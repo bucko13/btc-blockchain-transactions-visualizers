@@ -14,7 +14,7 @@
 <body ng-app="bitcoinApp" >
   <div class="container" ng-controller="TransactionData">
         <h1>Bitcoin Transactions</h1>
-        <!-- <div id="total-transactions">{{ totalTransactions }}</div> -->
+        <div id="total-transactions">{{ totalTransactions }}</div>
         <div id='transaction-container' ng-repeat="transaction in transactions track by $index">{{ transaction }}</div>
   </div>
 <!--   <script type="text/javascript">
