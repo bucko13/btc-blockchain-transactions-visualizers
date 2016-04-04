@@ -4,7 +4,8 @@
   "dependencies": {
     "underscore": "^1.8.3",
     "jquery": "~2.1.1",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "angular": "^1.5.3"
   },
   "ignore": [
     "**/.*",

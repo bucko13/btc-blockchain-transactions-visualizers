@@ -4,12 +4,16 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script> -->
+  <!-- dependencies -->
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/jquery/dist/jquery.js"></script>
+  
+  <!-- App Scripts -->
   <script src="/lib/websockets.js"></script>
 </head>
-<body>
-  <div ng-app="bitcoinVisualizer">
+<body ng-app="bitcoinApp" >
+  <div class="container">
         <h1>Bitcoin Transactions</h1>
         <div id="total-transactions"></div>
         <div id='transaction-container'></div>
