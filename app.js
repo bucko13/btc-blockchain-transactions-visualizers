@@ -7,9 +7,15 @@ angular.module('bitcoinApp', [
   var dataStream = $websocket('wss://bitcoin.toshi.io');
 
   var collection = [];
+  var transaction;
 
   dataStream.onMessage(function(message) {
-    collection.push(JSON.parse(message.data));
+    var amount = JSON.parse(message.data).data.amount
+    amount = amount > 0 ? (amount / 1e8).toFixed(8) : false;
+    collection.push(amount);
+    // transaction = JSON.parse(message.data).data.amount;
+    // return transaction;
+    // console.log(transaction);
   });
 
   var methods = {
@@ -23,7 +29,8 @@ angular.module('bitcoinApp', [
 
 .controller('TransactionData', ['$scope', 'StreamTransactions', 
   function($scope, StreamTransactions) {
-    // StreamTransactions.get()
+    StreamTransactions.get()
+    // var transactions = StreamTransactions.collection;
     $scope.transactions = StreamTransactions.collection;
-    // console.log(StreamTransactions.get())
+    console.log(StreamTransactions.collection);
 }])
