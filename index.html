@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular-websocket/angular-websocket.js"></script>
   
   <!-- App Scripts -->
   <script src="/lib/websockets.js"></script>
@@ -15,8 +16,8 @@
 <body ng-app="bitcoinApp" >
   <div class="container">
         <h1>Bitcoin Transactions</h1>
-        <div id="total-transactions"></div>
-        <div id='transaction-container'></div>
+        <div id="total-transactions">{{ totalTransactions }}</div>
+        <div id='transaction-container'>{{ transactions }}</div>
   </div>
   <script type="text/javascript">
     $(document).ready(function() {
