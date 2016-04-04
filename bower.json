@@ -1,0 +1,19 @@
+{
+  "name": "bitcoin-visualizer",
+  "version": "0.0.0",
+  "dependencies": {
+    "underscore": "^1.8.3",
+    "jquery": "~2.1.1",
+    "bootstrap": "^3.3.6"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "underscore": "^1.8.3"
+  }
+}
