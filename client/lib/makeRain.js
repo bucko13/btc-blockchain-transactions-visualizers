@@ -34,6 +34,8 @@ bitcoinApp.service('makeRain', function() {
   var generateRain = function(svg, transactions, fillVolume) {
     var w = svg.attr('width'); 
     var h = svg.attr('height');
+    svg.selectAll('rect').remove();
+    svg.selectAll('circle').remove();
 
     svg.selectAll('rect')
       .data([10]).enter()

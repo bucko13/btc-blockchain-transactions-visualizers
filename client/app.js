@@ -7,6 +7,9 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
     var StreamTransactions = $websocket('wss://bitcoin.toshi.io');
     var total = 0;
     var transactions = [];
+    var d3 = $window.d3;
+    var svg = d3.select('svg');
+    
     StreamTransactions.onMessage(function(message) {
       // console.log(message);
       var amount = JSON.parse(message.data).data.amount;
@@ -41,12 +44,9 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
     $scope.resetTransactions = function() {
       $scope.totalTransactions = 0;
       total = 0;
+      $scope.transactions = [];
       transactions = [];
       time = 0;
-      $scope.transactions = [];
-      var d3 = $window.d3;
-      var svg = d3.select('svg');
-      generateRain(svg, total, 10);
     }
 }]);
 
