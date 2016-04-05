@@ -9,6 +9,7 @@
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular-websocket/angular-websocket.js"></script>
+  <script src="bower_components/d3/d3.min.js"></script>
 
 </head>
 <body >
@@ -18,7 +19,8 @@
   </div>
     <div class="row" ng-controller="TransactionData">
       <div class="transaction-container col-md-8" >
-            <div id='transaction-container' ng-repeat="transaction in transactions track by $index">{{ transaction }}</div>
+      <div linear-chart chart-data="transactions"></div>
+        <div id='transaction-container' ng-repeat="transaction in transactions track by $index">{{ transaction }}</div>
       </div>
       <div class="col-md-4">
       <div>
