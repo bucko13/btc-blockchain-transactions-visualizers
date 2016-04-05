@@ -1,5 +1,5 @@
 
-bitcoinApp.directive('fillTub', function($window, $parse) {
+bitcoinApp.directive('fillTub', ['$window', 'makeRain', function($window, makeRain) {
   return{
     restrict: 'EA',
     template: '<svg width="600" height="300"></svg>',
@@ -17,58 +17,68 @@ bitcoinApp.directive('fillTub', function($window, $parse) {
       var h = svg.attr('height');
       var full = 17000; //value of target total volume for tub
       var fillVolume = 10; //volume of tub filled
-
+     
+     //need to create our first, empty rectangle
       svg.selectAll('rect')
         .data([fillVolume]).enter()
           .append('rect')
           .attr('height', fillVolume)
           .attr('width', w)
           .attr('fill', 'steelblue')
-          .attr('y', h - fillVolume/w); //need to do the height and y this way because of svg origin in top left
+          .attr('y', function() { return h - fillVolume/w; }); //need to do the height and y this way because of svg origin in top left
+
+      // svg.selectAll("circle")
+      //   .data([1])
+      //     .enter().append("circle")
+      //     .attr('r', function(d) { return Math.sqrt(d*2); })
+      //     .attr('cx', function() { return Math.random() * w; })
+      //     .attr('cy', 0)
+      //     .attr('fill', 'steelblue')
+      //     .transition()
+      //       .duration(5000)
+      //       .ease('cubic')
+      //       .attr('cy', function(d) {
+      //         return h + Math.sqrt(d);
+      //       });   
 
       //need to watch if there are changes to data
-      scope.$watch(total, function(newVal, oldVal) {
+      scope.$watchCollection(total, function(newVal, oldVal) {
         fillVolume = parseFloat(newVal); // the fill volume of tub will be the total transaction volume
-        fillContainer();
-        // newRain();
-        // console.log(scope.transactions);
+        console.log('old val is ', oldVal);
+        console.log('and fillVolume is ', fillVolume);
+        makeRain(svg, scope.transactions, fillVolume);            
       });
-
-
-      var fillContainer = function() {
-        svg.selectAll('rect')
-              .data([fillVolume])
-                .attr('height', fillVolume/w)
-                .attr('width', w)
-                .attr('y', h - fillVolume/w)
-                .attr('fill', 'steelblue')
-                .transition()
-                  .duration(500);   
-        // if( scope.transactions) {
-        // console.log('transactions: ', scope.transactions);
-          var circle = svg.selectAll("circle")
-              .data(scope.transactions)
-              .attr('fill', 'steelblue'); 
-              newRain();            
-        // }        
-      }
       
-      var newRain = function() {
-        var rainDrops = svg.selectAll("circle")
-                          .data(scope.transactions)
-                            .enter().append("circle")
-                            .attr('r', function(d) { return Math.sqrt(d*2); })
-                            .attr('cx', function() { return Math.random() * w; })
-                            .attr('cy', 0)
-                            .attr('fill', 'steelblue')
-                            .transition()
-                              .duration(2500)
-                              .ease('cubic')
-                              .attr('cy', function(d) {
-                                return h + Math.sqrt(d);
-                              });
-        return rainDrops;
-      }
+      // var newRain = function() {
+      //   svg.selectAll("circle")
+      //     .data(scope.transactions)
+      //       .enter().append("circle")
+      //       .attr('r', function(d) { return Math.sqrt(d*2); })
+      //       .attr('cx', function() { return Math.random() * w; })
+      //       .attr('cy', 0)
+      //       .attr('fill', 'steelblue')
+      //       .transition()
+      //         .duration(5000)
+      //         .ease('cubic')
+      //         .attr('cy', function(d) {
+      //           return h + Math.sqrt(d);
+      //         })
+      //         .each('end', fillContainer);      
+      // }
+
+      // var fillContainer = function() {
+      //   svg.selectAll('rect')
+      //         .data([fillVolume])
+      //           .attr('height', function() {return fillVolume/w; })
+      //           .attr('width', w)
+      //           .attr('y', function() {return h - fillVolume/w; })
+      //           .attr('fill', 'steelblue')
+      //           .transition()
+      //             .duration(500);   
+      //     var circle = svg.selectAll("circle")
+      //         .data(scope.transactions)
+      //         .attr('fill', 'steelblue'); 
+      // }
     }
   };
-});
+}]);
