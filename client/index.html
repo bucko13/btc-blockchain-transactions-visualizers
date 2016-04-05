@@ -33,19 +33,23 @@
         <h4 style="text-align: center">Display Currency</h4>
         <div class="row">
           <div class="col-sm-4">
-            <button type="button" class="btn btn-default btn-sm btn-block" ng-click="currencyBTC()">BTC</button> 
+            <button type="button" class="btn btn-default btn-sm btn-block" ng-click="exchangeRate('BTC')">BTC</button> 
           </div>
           <div class="col-sm-4">
-            <button type="button" class="btn btn-default btn-sm btn-block" ng-click="currencyUSD()">USD</button> 
+            <button type="button" class="btn btn-default btn-sm btn-block" ng-click="exchangeRate('USD')">USD</button> 
           </div>
           <div class="col-sm-4">
-            <button type="button" class="btn btn-default btn-sm btn-block" ng-click="currencyCNY()">CNY</button> 
+            <button type="button" class="btn btn-default btn-sm btn-block" ng-click="exchangeRate('CNY')">CNY</button> 
           </div>
+        </div>
+        <div class="row">
+          <!-- show currently selected currency exchange -->
         </div>
       </div>
   </div>
 
   <script src="app.js"></script>
   <script src="lib/filltub.js"></script>
+  <script src="lib/exchangeRates.js"></script>
 </body>
 </html>

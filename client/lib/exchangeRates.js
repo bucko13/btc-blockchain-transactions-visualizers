@@ -1,10 +1,10 @@
 bitcoinApp.service('exchangeRates' , [ '$http', '$q', function($http, $q) {
   var exchangeRate = function(targetCurrency) {
     var request = $http({
-      method: GET,
+      method: 'GET',
       url: 'https://api.coinbase.com/v2/exchange-rates',
       params: {
-        currency: targetCurrency
+        currency: 'BTC'
       }
     });
 
@@ -25,7 +25,7 @@ bitcoinApp.service('exchangeRates' , [ '$http', '$q', function($http, $q) {
     // I transform the successful response, unwrapping the application data
     // from the API response payload.
   function handleSuccess( response ) {
-        return( response.data );
+        return( response.data.data.rates);
   }
 
   //this is the function we want to be accessible externally
