@@ -16,6 +16,7 @@
         <h1>Bitcoin Transactions</h1>
         <button ng-click="resetTransactions()">Reset</button>
         <div id="total-transactions">{{ totalTransactions[totalTransactions.length - 1] }}</div>
+         <div id="total-transactions">{{ totalTransactions }}</div>
         <div id='transaction-container' ng-repeat="transaction in transactions track by $index">{{ transaction }}</div>
   </div>
 
