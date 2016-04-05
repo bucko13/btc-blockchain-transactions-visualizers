@@ -23,12 +23,26 @@
 
      <!--    <div id='transaction-container' ng-repeat="transaction in transactions track by $index">{{ transaction }}</div> -->
       </div>
-      <div class="col-md-4">
-      <div>
-        <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="resetTransactions()">Reset    <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span></button> 
+      <div class="col-md-4 dashboard">
+        <h3 style="text-align: center;">Live Total Transactions</h3>
          <div class="alert alert-info" id="total-transactions" role="alert" >฿{{ totalTransactions }}</div>
+         <h3 style="text-align: center;">Time Tracked</h3>
+          <div class="alert alert-warning" id="total-transactions" role="alert" >{{ totalTime }} seconds</div>
+        <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="resetTransactions()">Reset    <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span></button> 
+
+        <h4 style="text-align: center">Display Currency</h4>
+        <div class="row">
+          <div class="col-sm-4">
+            <button type="button" class="btn btn-default btn-sm btn-block" ng-click="currencyBTC()">BTC</button> 
+          </div>
+          <div class="col-sm-4">
+            <button type="button" class="btn btn-default btn-sm btn-block" ng-click="currencyUSD()">USD</button> 
+          </div>
+          <div class="col-sm-4">
+            <button type="button" class="btn btn-default btn-sm btn-block" ng-click="currencyCNY()">CNY</button> 
+          </div>
+        </div>
       </div>
-    </div>
   </div>
 
   <script src="app.js"></script>
