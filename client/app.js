@@ -7,19 +7,21 @@ angular.module('bitcoinApp', [
   var dataStream = $websocket('wss://bitcoin.toshi.io');
 
   var collection = [];
-  var total = 0 ;
+  var totalArray = [];
+  var total = 0;
 
   dataStream.onMessage(function(message) {
     var amount = JSON.parse(message.data).data.amount
-    amount = parseFloat(amount > 0 ? (amount / 1e8).toFixed(8) : false);
-    collection.push(amount);
+    amount = parseFloat(amount > 0 ? (amount / 1e8).toFixed(8) : 0);
     total = total + amount;
-    methods.total = total;
-
+    collection.push(amount);
+    totalArray.push(Math.round(total * 10000) / 10000);
+    // console.log(methods.total);      
   });
 
   var methods = {
     collection: collection,
+    totalArray: totalArray,
     total: total,
     get: function() {
       dataStream.send(JSON.stringify({ subscribe: 'transactions' }));
@@ -31,7 +33,8 @@ angular.module('bitcoinApp', [
 .controller('TransactionData', ['$scope', 'StreamTransactions', 
   function($scope, StreamTransactions) {
     StreamTransactions.get();
-    $scope.totalTransactions = StreamTransactions.total;
-    $scope.transactions = StreamTransactions.collection;
-    console.log(StreamTransactions);
+    var transactions = StreamTransactions.collection;
+    var totalTransactions = StreamTransactions.totalArray;
+    $scope.transactions = transactions;
+    $scope.totalTransactions = totalTransactions;
 }])

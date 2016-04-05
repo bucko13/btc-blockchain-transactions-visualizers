@@ -6,7 +6,8 @@
     "jquery": "~2.1.1",
     "bootstrap": "^3.3.6",
     "angular": "^1.5.3",
-    "angular-websocket": "^1.0.14"
+    "angular-websocket": "^1.0.14",
+    "socket.io": "^1.4.5"
   },
   "ignore": [
     "**/.*",
