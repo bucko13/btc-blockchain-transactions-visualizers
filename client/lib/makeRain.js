@@ -1,7 +1,9 @@
 bitcoinApp.service('makeRain', function() {
-  var newRain = function(svg, transactions, fillVolume) {
+  var fillVolume = 0;
+  var newRain = function(svg, transactions, fill) {
     var w = parseFloat(svg.attr('width')); 
     var h = parseFloat(svg.attr('height'));
+    fillVolume = fill;
 
     svg.selectAll("circle")
       .data(transactions)
@@ -21,7 +23,9 @@ bitcoinApp.service('makeRain', function() {
                   .data([fillVolume])
                     .attr('height', function() { return fillVolume/w; })
                     .attr('width', w)
-                    .attr('y', function() {return h - fillVolume/w; })
+                    .attr('y', function() {
+                      console.log('fillVolume in rectangle newrain ', fillVolume);
+                      return h - fillVolume/w; })
                     .attr('fill', 'steelblue')
                     .transition()
                       .duration(500);   
@@ -31,14 +35,15 @@ bitcoinApp.service('makeRain', function() {
           });      
   }
 
-  var generateRain = function(svg, transactions, fillVolume) {
+  var generateRain = function(svg, transactions) {
+    fillVolume = 0;
     var w = svg.attr('width'); 
     var h = svg.attr('height');
     svg.selectAll('rect').remove();
     svg.selectAll('circle').remove();
 
     svg.selectAll('rect')
-      .data([10]).enter()
+      .data([0]).enter()
         .append('rect')
         .attr('height', 10)
         .attr('width', w)

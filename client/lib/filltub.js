@@ -22,10 +22,14 @@ bitcoinApp.directive('fillTub', ['$window', 'makeRain', function($window, makeRa
       makeRain.generateRain(svg, scope.transactions, 10);
       scope.$watchCollection(total, function(newVal, oldVal) {
         if(oldVal > newVal) {
-          makeRain.generateRain(svg, scope.transactions, 10);
+          fillVolume = 0;
+          console.log('after reset, fill Volume = ', fillVolume);
+          makeRain.generateRain(svg, scope.transactions, fillVolume);
         }
-        fillVolume = parseFloat(newVal); // the fill volume of tub will be the total transaction volume
-        makeRain.newRain(svg, scope.transactions, fillVolume);            
+        else {
+          fillVolume = parseFloat(newVal); // the fill volume of tub will be the total transaction volume
+          makeRain.newRain(svg, scope.transactions, fillVolume);            
+        }
       });
       
     }
