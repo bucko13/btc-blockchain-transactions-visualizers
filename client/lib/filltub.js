@@ -2,7 +2,7 @@
 bitcoinApp.directive('fillTub', function($window, $parse) {
   return{
     restrict: 'EA',
-    template: '<svg width="650" height="250"></svg>',
+    template: '<svg width="600" height="300"></svg>',
     link: function(scope, elem, attrs){
       //variable to store the attr we want to watch
       var total = attrs.chartTotal;
@@ -34,8 +34,6 @@ bitcoinApp.directive('fillTub', function($window, $parse) {
         // console.log(scope.transactions);
       });
 
-      scope.$watch(transactions, function(newVal, oldVal) {
-      });
 
       var fillContainer = function() {
         svg.selectAll('rect')
@@ -46,13 +44,13 @@ bitcoinApp.directive('fillTub', function($window, $parse) {
                 .attr('fill', 'steelblue')
                 .transition()
                   .duration(500);   
-
-        if( scope.transactions) {
+        // if( scope.transactions) {
+        // console.log('transactions: ', scope.transactions);
           var circle = svg.selectAll("circle")
               .data(scope.transactions)
               .attr('fill', 'steelblue'); 
               newRain();            
-        }        
+        // }        
       }
       
       var newRain = function() {
@@ -64,7 +62,7 @@ bitcoinApp.directive('fillTub', function($window, $parse) {
                             .attr('cy', 0)
                             .attr('fill', 'steelblue')
                             .transition()
-                              .duration(2000)
+                              .duration(2500)
                               .ease('cubic')
                               .attr('cy', function(d) {
                                 return h + Math.sqrt(d);

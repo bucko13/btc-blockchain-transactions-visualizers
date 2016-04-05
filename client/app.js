@@ -2,8 +2,8 @@ var bitcoinApp = angular.module('bitcoinApp', [
   'ngWebSocket',
 ]);
 
-bitcoinApp.controller('TransactionData', ['$scope', '$websocket', 
-  function($scope, $websocket) {
+bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval', 
+  function($scope, $websocket, $interval) {
     var StreamTransactions = $websocket('wss://bitcoin.toshi.io');
     var total = 0;
     var transactions = [];
@@ -18,10 +18,22 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket',
     });
     StreamTransactions.send(JSON.stringify({ subscribe: 'transactions' }));
 
+    //Timer
+    var time = 0;
+    var timer = function() {
+      $interval(function() {
+        $scope.totalTime = time++;
+      }, 1000);
+    };
+
+    timer();
+
+
     $scope.resetTransactions = function() {
       $scope.totalTransactions = 0;
       total = 0;
       transactions = [];
+      time = 0;
       $scope.transactions = [];
 
     }
