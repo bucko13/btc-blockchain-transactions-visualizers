@@ -5,7 +5,7 @@
   "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall" : "bower install"
+    "postinstall": "bower cache clean && bower install"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,10 @@
   },
   "homepage": "https://github.com/Bucko13/btc-blockchain-transactions-visualizers#readme",
   "dependencies": {
+    "bower": "^1.7.9",
     "express": "^4.13.4",
     "http": "0.0.0",
-    "node": "0.0.0",
+    "node": "5.9.1",
     "path": "^0.12.7",
     "socket.io": "^1.4.5"
   }
