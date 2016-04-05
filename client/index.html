@@ -10,6 +10,7 @@
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular-websocket/angular-websocket.js"></script>
   <script src="bower_components/d3/d3.min.js"></script>
+  <script src="bower_components/bootstrap/js/alert.js"></script>
 
 </head>
 <body >
@@ -25,7 +26,8 @@
       </div>
       <div class="col-md-4 dashboard">
         <h3 style="text-align: center;">Live Total Transactions</h3>
-         <div class="alert alert-info" id="total-transactions" role="alert" >฿{{ totalTransactions }}</div>
+         <div class="alert alert-info" id="total-transactions" role="alert" >{{ displaySymbol }}{{ displayTransactionTotal | number:2 }}</div>
+         <div class="ng-hide">{{ totalTransactions }}</div>
          <h3 style="text-align: center;">Time Tracked</h3>
           <div class="alert alert-warning" id="total-transactions" role="alert" total-time>{{ totalTime }} seconds</div>
         <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="resetTransactions()">Reset    <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span></button> 
@@ -33,7 +35,7 @@
         <h4 style="text-align: center">Display Currency</h4>
         <div class="row">
           <div class="col-sm-4">
-            <button type="button" class="btn btn-default btn-sm btn-block" ng-click="exchangeRate = 1; exchangeCurrency='BTC';">BTC</button> 
+            <button type="button" class="btn btn-default btn-sm btn-block" ng-click="exchangeRate = 1; exchangeCurrency='BTC'; getExchangeRate('BTC');">BTC</button> 
           </div>
           <div class="col-sm-4">
             <button type="button" class="btn btn-default btn-sm btn-block" ng-click="getExchangeRate('USD')">USD</button> 
@@ -44,7 +46,7 @@
         </div>
         <div class="row">
           <!-- show currently selected currency exchange -->
-          <div class="alert alert-success col-md-12" role="alert">
+          <div class="alert alert-success col-md-12 ng-hide" role="alert" ng-hide="hideExchange">
             <h4>1 BTC = {{ exchangeRate }} {{ exchangeCurrency }}</h4>
           </div>
         </div>

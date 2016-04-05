@@ -23,9 +23,7 @@ bitcoinApp.service('makeRain', function() {
                   .data([fillVolume])
                     .attr('height', function() { return fillVolume/w; })
                     .attr('width', w)
-                    .attr('y', function() {
-                      console.log('fillVolume in rectangle newrain ', fillVolume);
-                      return h - fillVolume/w; })
+                    .attr('y', function() { return h - fillVolume/w; })
                     .attr('fill', 'steelblue')
                     .transition()
                       .duration(500);   

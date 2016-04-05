@@ -23,7 +23,6 @@ bitcoinApp.directive('fillTub', ['$window', 'makeRain', function($window, makeRa
       scope.$watchCollection(total, function(newVal, oldVal) {
         if(oldVal > newVal) {
           fillVolume = 0;
-          console.log('after reset, fill Volume = ', fillVolume);
           makeRain.generateRain(svg, scope.transactions, fillVolume);
         }
         else {
