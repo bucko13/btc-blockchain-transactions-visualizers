@@ -6,6 +6,7 @@
 
   <!-- dependencies -->
   <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
   <script src="/bower_components/angular/angular.js"></script>
   <script src="/bower_components/jquery/dist/jquery.js"></script>
   <script src="/bower_components/angular-websocket/angular-websocket.js"></script>
@@ -20,9 +21,8 @@
   </div>
     <div class="row" ng-controller="TransactionData">
       <div class="transaction-container col-md-8" >
-      <div fill-tub chart-total="totalTransactions" chart-transactions="transactions"></div>
-
-     <!--    <div id='transaction-container' ng-repeat="transaction in transactions track by $index">{{ transaction }}</div> -->
+        <div fill-tub chart-total="totalTransactions" chart-transactions="transactions"></div>
+        <footer>This app was made using the <a href="">Coinbase Exchange</a> and Toshi APIs</footer> 
       </div>
       <div class="col-md-4 dashboard">
         <h3 style="text-align: center;">Live Total Transactions</h3>
