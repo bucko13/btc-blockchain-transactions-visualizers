@@ -28,10 +28,13 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval', '
 
     timer();
 
-    $scope.exchangeRate = function(targetCurrency) {
-      exchangeRates(targetCurrency).then(
+    $scope.getExchangeRate = function(targetCurrency) {
+      $scope.exchangeRate = '';
+      $scope.exchangeCurrency = 'Loading...';
+      exchangeRates().then(
         function(newRate) {
-          $scope.exchange = newRate[targetCurrency];
+          $scope.exchangeCurrency = targetCurrency;
+          $scope.exchangeRate = Math.round(newRate[targetCurrency]* 1000) / 1000;
         });
     };
 
