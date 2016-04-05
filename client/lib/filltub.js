@@ -2,7 +2,7 @@
 bitcoinApp.directive('fillTub', ['$window', 'makeRain', function($window, makeRain) {
   return{
     restrict: 'EA',
-    template: '<svg width="600" height="300"></svg>',
+    template: '<svg width="600" height="300" viewBox="0 0 600 300"></svg>',
     link: function(scope, elem, attrs){
       //variable to store the attr we want to watch
       var total = attrs.chartTotal;
@@ -19,13 +19,13 @@ bitcoinApp.directive('fillTub', ['$window', 'makeRain', function($window, makeRa
       var fillVolume = 10; //volume of tub filled
      
      //need to create our first, empty rectangle
-      svg.selectAll('rect')
-        .data([fillVolume]).enter()
-          .append('rect')
-          .attr('height', fillVolume)
-          .attr('width', w)
-          .attr('fill', 'steelblue')
-          .attr('y', function() { return h - fillVolume/w; }); //need to do the height and y this way because of svg origin in top left
+      // svg.selectAll('rect')
+      //   .data([fillVolume]).enter()
+      //     .append('rect')
+      //     .attr('height', fillVolume)
+      //     .attr('width', w)
+      //     .attr('fill', 'steelblue')
+      //     .attr('y', function() { return h - fillVolume/w; }); //need to do the height and y this way because of svg origin in top left
 
       // svg.selectAll("circle")
       //   .data([1])
@@ -42,11 +42,14 @@ bitcoinApp.directive('fillTub', ['$window', 'makeRain', function($window, makeRa
       //       });   
 
       //need to watch if there are changes to data
+      makeRain.generateRain(svg, scope.transactions, 10);
       scope.$watchCollection(total, function(newVal, oldVal) {
+        if(oldVal > newVal) {
+          console.log('You reset!');
+          makeRain.generateRain(svg, scope.transactions, 10);
+        }
         fillVolume = parseFloat(newVal); // the fill volume of tub will be the total transaction volume
-        console.log('old val is ', oldVal);
-        console.log('and fillVolume is ', fillVolume);
-        makeRain(svg, scope.transactions, fillVolume);            
+        makeRain.newRain(svg, scope.transactions, fillVolume);            
       });
       
       // var newRain = function() {

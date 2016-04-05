@@ -2,8 +2,8 @@ var bitcoinApp = angular.module('bitcoinApp', [
   'ngWebSocket',
 ]);
 
-bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval', 'exchangeRates', 'makeRain', 
-  function($scope, $websocket, $interval, exchangeRates, makeRain) {
+bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  '$window', 'exchangeRates', 'makeRain',
+  function($scope, $websocket, $interval, $window, exchangeRates, makeRain) {
     var StreamTransactions = $websocket('wss://bitcoin.toshi.io');
     var total = 0;
     var transactions = [];
@@ -44,7 +44,9 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval', '
       transactions = [];
       time = 0;
       $scope.transactions = [];
-
+      var d3 = $window.d3;
+      var svg = d3.select('svg');
+      generateRain(svg, total, 10);
     }
 }]);
 
