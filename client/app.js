@@ -37,4 +37,10 @@ angular.module('bitcoinApp', [
     var totalTransactions = StreamTransactions.totalArray;
     $scope.transactions = transactions;
     $scope.totalTransactions = totalTransactions;
+
+    $scope.resetTransactions = function() {
+      $scope.totalTransactions = [];
+      $scope.transactions = [];
+      StreamTransactions.get();
+    }
 }])
