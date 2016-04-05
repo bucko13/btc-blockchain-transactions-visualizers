@@ -19,7 +19,7 @@
   </div>
     <div class="row" ng-controller="TransactionData">
       <div class="transaction-container col-md-8" >
-      <div linear-chart chart-data="totalTransactions" chart-watch="transactions"></div>
+      <div fill-tub chart-data="totalTransactions" chart-watch="transactions"></div>
 
         <div id='transaction-container' ng-repeat="transaction in transactions track by $index">{{ transaction }}</div>
       </div>
