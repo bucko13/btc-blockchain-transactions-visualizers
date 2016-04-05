@@ -13,6 +13,9 @@
   },
   "author": "Buck Perley",
   "license": "ISC",
+  "engines" : {
+    "node": "5.9.1",
+  },
   "bugs": {
     "url": "https://github.com/Bucko13/btc-blockchain-transactions-visualizers/issues"
   },
@@ -21,7 +24,7 @@
     "bower": "^1.7.9",
     "express": "^4.13.4",
     "http": "0.0.0",
-    "node": "5.9.1",
+    
     "path": "^0.12.7",
     "socket.io": "^1.4.5"
   }
