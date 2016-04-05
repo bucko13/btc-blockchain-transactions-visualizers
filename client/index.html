@@ -26,7 +26,7 @@
       </div>
       <div class="col-md-4 dashboard">
         <h3 style="text-align: center;">Live Total Transactions</h3>
-         <div class="alert alert-info" id="total-transactions" role="alert" >{{ displaySymbol }}{{ displayTransactionTotal | number:2 }}</div>
+         <div class="alert alert-info" id="total-transactions" role="alert" ><span class="total" ng-bind="displayTransactionTotal"></span></div>
          <div class="ng-hide">{{ totalTransactions }}</div>
          <h3 style="text-align: center;">Time Tracked</h3>
           <div class="alert alert-warning" id="total-transactions" role="alert" total-time>{{ totalTime }} seconds</div>

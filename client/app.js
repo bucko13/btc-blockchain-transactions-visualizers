@@ -2,19 +2,20 @@ var bitcoinApp = angular.module('bitcoinApp', [
   'ngWebSocket',
 ]);
 
-bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  '$window', 'exchangeRates', 'makeRain',
-  function($scope, $websocket, $interval, $window, exchangeRates, makeRain) {
+bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  '$window', '$filter', 'exchangeRates', 'makeRain',
+  function($scope, $websocket, $interval, $window, $filter, exchangeRates, makeRain) {
     var StreamTransactions = $websocket('wss://bitcoin.toshi.io');
     var d3 = $window.d3;
     var svg = d3.select('svg');
 
     //defaults
     var exchangeRate = $scope.exchangeRate = 1;
-    var total = displayTransactionTotal = 0;
+    var total = displayTransactionTotal = $scope.displayTransactionTotal = 0;
     var transactions = [];
+    var symbol = '฿';
 
     $scope.hideExchange = true;
-    $scope.displaySymbol = '฿'
+    $scope.displaySymbol = '฿';
 
     //websocket interaction
     StreamTransactions.onMessage(function(message) {
@@ -28,22 +29,11 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
       transactions.push(amount);
       displayTransactionTotal = total * exchangeRate;
 
-      $scope.displayTransactionTotal = displayTransactionTotal;
+      $scope.displayTransactionTotal = $filter('currency')(displayTransactionTotal, symbol, 4);
       $scope.totalTransactions = total;
       $scope.transactions = transactions;
     });
     StreamTransactions.send(JSON.stringify({ subscribe: 'transactions' }));
-
-
-    //Timer
-    var time = 0;
-    var timer = function() {
-      $interval(function() {
-        $scope.totalTime = time++;
-      }, 1000);
-    };
-
-    timer();
 
     $scope.getExchangeRate = function(targetCurrency) {
       //set loading displays
@@ -60,21 +50,22 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
         function(newRate) {
           switch(targetCurrency) {
             case 'BTC': 
-              $scope.displaySymbol = '฿';
+              symbol ='฿';
               break;
             case 'USD': 
-              $scope.displaySymbol = '$';
+              symbol ='$';
               break;
             case 'CNY':
-              $scope.displaySymbol = '¥';
+              symbol ='¥';
               break;
             default:
-              $scope.displaySymbol = ''
+              symbol = ''
           }
 
           $scope.exchangeCurrency = targetCurrency;
           $scope.exchangeRate = exchangeRate = Math.round(newRate[targetCurrency]* 1000) / 1000;
-          $scope.displayTransactionTotal = $scope.exchangeRate * total;
+          displayTransactionTotal = $scope.exchangeRate * total;
+          $scope.displayTransactionTotal = $filter('currency')(displayTransactionTotal, symbol);(displayTransactionTotal, symbol);
         });
     };
 
@@ -86,6 +77,16 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
       transactions = [];
       time = 0;
     }
+
+    //Timer
+    var time = 0;
+    var timer = function() {
+      $interval(function() {
+        $scope.totalTime = time++;
+      }, 1000);
+    };
+
+    timer();
 }]);
 
 
