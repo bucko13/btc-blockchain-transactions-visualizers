@@ -59,7 +59,7 @@ bitcoinApp.directive('fillTub', function($window, $parse) {
         var rainDrops = svg.selectAll("circle")
                           .data(scope.transactions)
                             .enter().append("circle")
-                            .attr('r', function(d) { return Math.sqrt(d); })
+                            .attr('r', function(d) { return Math.sqrt(d*2); })
                             .attr('cx', function() { return Math.random() * w; })
                             .attr('cy', 0)
                             .attr('fill', 'steelblue')

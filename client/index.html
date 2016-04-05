@@ -21,12 +21,12 @@
       <div class="transaction-container col-md-8" >
       <div fill-tub chart-total="totalTransactions" chart-transactions="transactions"></div>
 
-        <div id='transaction-container' ng-repeat="transaction in transactions track by $index">{{ transaction }}</div>
+     <!--    <div id='transaction-container' ng-repeat="transaction in transactions track by $index">{{ transaction }}</div> -->
       </div>
       <div class="col-md-4">
       <div>
         <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="resetTransactions()">Reset    <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span></button> 
-         <div class="alert alert-info" id="total-transactions" role="alert" >{{ totalTransactions }}</div>
+         <div class="alert alert-info" id="total-transactions" role="alert" >฿{{ totalTransactions }}</div>
       </div>
     </div>
   </div>
