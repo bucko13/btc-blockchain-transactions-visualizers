@@ -2,7 +2,7 @@
 bitcoinApp.directive('fillTub', ['$window', 'makeRain', function($window, makeRain) {
   return{
     restrict: 'EA',
-    template: '<svg width="650" height="300"></svg>',
+    template: '<svg width="625" height="300"></svg>',
     link: function(scope, elem, attrs){
       //variable to store the attr we want to watch
       var total = attrs.chartTotal;
