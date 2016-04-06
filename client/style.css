@@ -4,6 +4,12 @@ footer {
   font-size:0.8em;
 }
 
+.dashboard .alert {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
 .rain-alert h2 {
   text-align: center
 }
@@ -14,7 +20,7 @@ footer {
 }
 
 /* when hiding the picture */
-.rain-alert.ng-hide         { animation:0.5s lightSpeedOut ease; }
+.rain-alert.ng-hide-add         { animation:0.5s lightSpeedOut ease; }
 
 /* when showing the picture */
 .rain-alert.ng-hide-remove      { animation:0.5s flipInX ease; }

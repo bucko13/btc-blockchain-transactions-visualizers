@@ -21,9 +21,9 @@ bitcoinApp.service('makeRain', function() {
           .each('end', function() {
             svg.selectAll('rect')
                   .data([fillVolume])
-                    .attr('height', function() { return fillVolume/w; })
+                    .attr('height', function() { return (fillVolume/w ) * 2; })
                     .attr('width', w)
-                    .attr('y', function() { return h - fillVolume/w; })
+                    .attr('y', function() { return h - (fillVolume/w ) * 2; })
                     .attr('fill', 'steelblue')
                     .transition()
                       .duration(500);   
