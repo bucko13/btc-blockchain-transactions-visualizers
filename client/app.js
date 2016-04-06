@@ -1,5 +1,6 @@
 var bitcoinApp = angular.module('bitcoinApp', [
   'ngWebSocket',
+  'ngAnimate'
 ]);
 
 bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  '$window', '$filter', 'exchangeRates', 'makeRain',
@@ -34,7 +35,7 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
       $scope.totalTransactions = total;
       $scope.transactions = transactions;
     });
-    
+
     StreamTransactions.send(JSON.stringify({ subscribe: 'transactions' }));
 
     $scope.getExchangeRate = function(targetCurrency) {

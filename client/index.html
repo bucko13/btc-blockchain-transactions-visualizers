@@ -22,7 +22,7 @@
   </div>
     <div class="row" ng-controller="TransactionData">
       
-      <div class="rain-alert ng-hide" role="alert" ng-hide="hideRainAlert">Make it rain</div>
+      <div class="alert alert-success rain-alert ng-hide" role="alert" ng-hide="hideRainAlert"><h2>Make it Rain!</h2></div>
 
       <div class="transaction-container col-md-8" >
         <div fill-tub chart-total="totalTransactions" chart-transactions="transactions"></div>
@@ -62,5 +62,6 @@
   <script src="lib/filltub.js"></script>
   <script src="lib/exchangeRates.js"></script>
   <script src="lib/makeRain.js"></script>
+  <script src="/bower_components/angular-animate/angular-animate.js"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@
   },
   "author": "Buck Perley",
   "license": "ISC",
-  "engines" : {
+  "engines": {
     "node": "5.9.1"
   },
   "bugs": {
