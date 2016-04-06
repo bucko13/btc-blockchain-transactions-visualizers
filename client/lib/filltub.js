@@ -2,7 +2,7 @@
 bitcoinApp.directive('fillTub', ['$window', 'makeRain', function($window, makeRain) {
   return{
     restrict: 'EA',
-    template: '<svg width="600" height="300" viewBox="0 0 600 300"></svg>',
+    template: '<svg width="650" height="300"></svg>',
     link: function(scope, elem, attrs){
       //variable to store the attr we want to watch
       var total = attrs.chartTotal;
@@ -17,7 +17,7 @@ bitcoinApp.directive('fillTub', ['$window', 'makeRain', function($window, makeRa
       var h = svg.attr('height');
       var full = 17000; //value of target total volume for tub
       var fillVolume = 10; //volume of tub filled
-
+      console.log('width is ', w);
       //need to watch if there are changes to data
       makeRain.generateRain(svg, scope.transactions, 10);
       scope.$watchCollection(total, function(newVal, oldVal) {
