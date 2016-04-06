@@ -17,7 +17,7 @@
 <body >
   <div class="container">
   <div class="page-header">
-    <h1>Live Bitcoin Transactions</h1>
+    <h1>Visualization of Live Bitcoin Transactions</h1>
     <h2><small>Made possible by the <a href="https://en.bitcoin.it/wiki/Block_chain" target="_blank">Bitcoin Blockchain</a></small></h2>
   </div>
     <div class="row" ng-controller="TransactionData">
@@ -26,7 +26,10 @@
 
       <div class="transaction-container col-md-8" >
         <div fill-tub chart-total="totalTransactions" chart-transactions="transactions"></div>
-        <footer>This app was made using the <a href="https://developers.coinbase.com/api/v2" target="_blank">Coinbase Developers</a> and <a href="https://toshi.io/" target="_blank">Toshi</a> APIs</footer> 
+        <footer>Data provided by <a href="https://developers.coinbase.com/api/v2" target="_blank">Coinbase Developers</a> and <a href="https://toshi.io/" target="_blank">Toshi</a> APIs</footer>
+        <h4>Description</h4>
+        <p>The above visualization shows live transactions as they are posted to the Bitcoin Blockchain, i.e. real transactions in real time. This is made possible by the decentralized and transparent nature of Bitcoin.</p> 
+        <p>Using the <a href="https://d3js.org/" target="_blank">d3 javascript liabrary</a>, the "droplets" are generated in proportion to the size of each new transaction. The container similarly fills up as more transactions are added. To clear the transactions, you can click the reset button. Switch the denominations of the total transactions display with the currency buttons in the dashboard.</p> 
       </div>
 
       <div class="col-md-4 dashboard">
@@ -58,6 +61,12 @@
           </div>
         </div>
       </div>
+  </div>
+
+  <footer class="row">
+    <div class="col-md-4 offset-md-2">
+      <p>Developed by <a href="https://github.com/Bucko13/" target="_blank">Buck Perley</a></p>
+    </div>
   </div>
 
   <script src="app.js"></script>
