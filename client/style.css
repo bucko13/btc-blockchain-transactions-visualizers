@@ -3,3 +3,16 @@ footer {
   margin-top: 1.2em;
   font-size:0.8em;
 }
+
+.rain-alert{
+  transition: 0.5s linear all;
+  line-height: 1em;
+  opacity: 1;
+  padding: 10px 10px;
+}
+
+.rain-alert.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}

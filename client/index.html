@@ -17,13 +17,18 @@
 <body >
   <div class="container">
   <div class="page-header">
-    <h1>Bitcoin Transactions</h1>
+    <h1>Live Bitcoin Transactions</h1>
+    <h2><small>Made possible by the <a href="https://en.bitcoin.it/wiki/Block_chain" target="_blank">Bitcoin Blockchain</a></small></h2>
   </div>
     <div class="row" ng-controller="TransactionData">
+      
+      <div class="rain-alert ng-hide" role="alert" ng-hide="hideRainAlert">Make it rain</div>
+
       <div class="transaction-container col-md-8" >
         <div fill-tub chart-total="totalTransactions" chart-transactions="transactions"></div>
         <footer>This app was made using the <a href="https://developers.coinbase.com/api/v2" target="_blank">Coinbase Developers</a> and <a href="https://toshi.io/" target="_blank">Toshi</a> APIs</footer> 
       </div>
+
       <div class="col-md-4 dashboard">
         <h3 style="text-align: center;">Live Total Transactions</h3>
          <div class="alert alert-info" id="total-transactions" role="alert" ><span class="total" ng-bind="displayTransactionTotal"></span></div>

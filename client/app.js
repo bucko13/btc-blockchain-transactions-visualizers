@@ -14,6 +14,7 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
     var transactions = [];
     var symbol = '฿';
 
+    $scope.hideRainAlert = true;
     $scope.hideExchange = true;
     $scope.displaySymbol = '฿';
 
@@ -33,6 +34,7 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
       $scope.totalTransactions = total;
       $scope.transactions = transactions;
     });
+    
     StreamTransactions.send(JSON.stringify({ subscribe: 'transactions' }));
 
     $scope.getExchangeRate = function(targetCurrency) {
@@ -69,8 +71,19 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
         });
     };
 
+    $scope.makeItRain = function() {
+      // console.log($scope.hideRainAlert);
+      $scope.hideRainAlert = !$scope.hideRainAlert;
+      console.log($scope.hideRainAlert);
+    }
+
     $scope.resetTransactions = function() {
-      // $scope.makeItRain = false;
+      $scope.hideRainAlert = false;
+
+      $interval(function() {
+        $scope.hideRainAlert = true;
+      }, 2000, 1);
+
       $scope.totalTransactions = 0;
       total = 0;
       $scope.transactions = [];
