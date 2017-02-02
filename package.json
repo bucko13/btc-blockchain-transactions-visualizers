@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Bucko13/btc-blockchain-transactions-visualizers#readme",
   "dependencies": {
+    "bcoin": "^0.15.0",
     "bower": "^1.7.9",
     "express": "^4.13.4",
     "http": "0.0.0",
