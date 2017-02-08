@@ -5,7 +5,8 @@ var bitcoinApp = angular.module('bitcoinApp', [
 
 bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  '$window', '$filter', 'exchangeRates', 'makeRain',
   function($scope, $websocket, $interval, $window, $filter, exchangeRates, makeRain) {
-    var StreamTransactions = $websocket('wss://bitcoin.toshi.io');
+    // var StreamTransactions = $websocket('wss://bitcoin.toshi.io');
+    var socket = io.connect('http://localhost:5000');
     var d3 = $window.d3;
     var svg = d3.select('svg');
 
@@ -18,14 +19,11 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
     $scope.hideRainAlert = true;
     $scope.hideExchange = true;
     $scope.displaySymbol = '฿';
-
-    //websocket interaction
-    StreamTransactions.onMessage(function(message) {
-      //set amount to the amount data we get on receiving the request
-      var amount = JSON.parse(message.data).data.amount;
+    socket.on('transaction', function(data) {
+      var amount = data.amount;
       //format the number to display in Bitcoin
-      amount = parseFloat(amount > 0 ? (amount / 1e8).toFixed(8) : 0);
-      
+      amount = parseFloat(amount > 0 ? (amount / 1e15).toFixed(8) : 0);
+      console.log('received a transaction: ', data);
       //update the amount
       total = total + parseFloat(amount);
       transactions.push(amount);
@@ -35,8 +33,24 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
       $scope.totalTransactions = total;
       $scope.transactions = transactions;
     });
+    // //websocket interaction
+    // StreamTransactions.onMessage(function(message) {
+    //   //set amount to the amount data we get on receiving the request
+    //   var amount = JSON.parse(message.data).data.amount;
+    //   //format the number to display in Bitcoin
+    //   amount = parseFloat(amount > 0 ? (amount / 1e8).toFixed(8) : 0);
+      
+    //   //update the amount
+    //   total = total + parseFloat(amount);
+    //   transactions.push(amount);
+    //   displayTransactionTotal = total * exchangeRate;
 
-    StreamTransactions.send(JSON.stringify({ subscribe: 'transactions' }));
+    //   $scope.displayTransactionTotal = $filter('currency')(displayTransactionTotal, symbol, 4);
+    //   $scope.totalTransactions = total;
+    //   $scope.transactions = transactions;
+    // });
+
+    // StreamTransactions.send(JSON.stringify({ subscribe: 'transactions' }));
 
     $scope.getExchangeRate = function(targetCurrency) {
       //set loading displays
