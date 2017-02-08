@@ -28,7 +28,6 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
       var amount = JSON.parse(message.data).x.out;
 
       var count = 0; 
-      console.log('********* TX: ', amount);
       amount.forEach((output) => {
             // const value = new bn(output.value);
             count += output.value;
