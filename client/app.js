@@ -5,7 +5,7 @@ var bitcoinApp = angular.module('bitcoinApp', [
 
 bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  '$window', '$filter', 'exchangeRates', 'makeRain',
   function($scope, $websocket, $interval, $window, $filter, exchangeRates, makeRain) {
-    var StreamTransactions = $websocket('wss://bitcoin.toshi.io');
+    var StreamTransactions = $websocket('wss://ws.blockchain.info/inv');
     var d3 = $window.d3;
     var svg = d3.select('svg');
 
@@ -20,9 +20,20 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
     $scope.displaySymbol = '฿';
 
     //websocket interaction
+    StreamTransactions.send(JSON.stringify({"op":"unconfirmed_sub"}));
+
     StreamTransactions.onMessage(function(message) {
-      //set amount to the amount data we get on receiving the request
-      var amount = JSON.parse(message.data).data.amount;
+      // set amount to the amount data we get on receiving the request
+      // var amount = JSON.parse(message.data).data.amount;
+      var amount = JSON.parse(message.data).x.out;
+
+      var count = 0; 
+      console.log('********* TX: ', amount);
+      amount.forEach((output) => {
+            // const value = new bn(output.value);
+            count += output.value;
+          });
+      amount = count;
       //format the number to display in Bitcoin
       amount = parseFloat(amount > 0 ? (amount / 1e8).toFixed(8) : 0);
       
@@ -36,7 +47,6 @@ bitcoinApp.controller('TransactionData', ['$scope', '$websocket', '$interval',  
       $scope.transactions = transactions;
     });
 
-    StreamTransactions.send(JSON.stringify({ subscribe: 'transactions' }));
 
     $scope.getExchangeRate = function(targetCurrency) {
       //set loading displays

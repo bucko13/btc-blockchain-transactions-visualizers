@@ -26,7 +26,7 @@
 
       <div class="transaction-container col-md-8" >
         <div fill-tub chart-total="totalTransactions" chart-transactions="transactions"></div>
-        <footer>Data provided by <a href="https://developers.coinbase.com/api/v2" target="_blank">Coinbase Developers</a> and <a href="https://toshi.io/" target="_blank">Toshi</a> APIs</footer>
+        <footer>Data provided by <a href="https://blockchain.info" target="_blank">Blockchain.info</a></footer>
         <h4>Description</h4>
         <p>The above visualization shows live transactions as they are posted to the Bitcoin Blockchain, i.e. real transactions in real time. This is made possible by the decentralized and transparent nature of Bitcoin.</p> 
         <p>Using the <a href="https://d3js.org/" target="_blank">d3 javascript liabrary</a>, the "droplets" are generated in proportion to the size of each new transaction. The container similarly fills up as more transactions are added. To clear the transactions, you can click the reset button. Switch the denominations of the total transactions display with the currency buttons in the dashboard.</p> 
@@ -74,5 +74,6 @@
   <script src="lib/exchangeRates.js"></script>
   <script src="lib/makeRain.js"></script>
   <script src="/bower_components/angular-animate/angular-animate.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
 </body>
 </html>
