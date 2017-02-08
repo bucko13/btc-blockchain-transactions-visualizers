@@ -17,7 +17,6 @@ bitcoinApp.directive('fillTub', ['$window', 'makeRain', function($window, makeRa
       var h = svg.attr('height');
       var full = 17000; //value of target total volume for tub
       var fillVolume = 10; //volume of tub filled
-      console.log('width is ', w);
       //need to watch if there are changes to data
       makeRain.generateRain(svg, scope.transactions, 10);
       scope.$watchCollection(total, function(newVal, oldVal) {

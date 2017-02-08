@@ -18,7 +18,7 @@ var seeds = [
 var index = 0;
 module.exports = new bcoin.pool({
   // Number of peers allowed
-  size: 42,
+  size: 100,
   // This function must return a socket that supports the standard
   // node socket model: `write()`, `destroy()` `on('data')`, etc.
   createConnection: function() {
