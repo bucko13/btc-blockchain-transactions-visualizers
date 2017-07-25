@@ -14,7 +14,7 @@
   "author": "Buck Perley",
   "license": "ISC",
   "engines": {
-    "node": "5.9.1"
+    "node": "6.11.1"
   },
   "bugs": {
     "url": "https://github.com/Bucko13/btc-blockchain-transactions-visualizers/issues"
